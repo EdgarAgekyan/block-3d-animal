@@ -233,7 +233,7 @@ function sendTextToHTML(text, htmlID) {
 
 function drawIMG() {
 
-  var snd = new Audio("omni_speech.mp3");
+  var snd = new Audio("./resources/audio/omni_speech.mp3");
   snd.play();
   snd.currentTime=0;
 
