@@ -28,7 +28,6 @@ function setupWebGL() {
   canvas = document.getElementById('webgl');
 
   // Get the rendering context for WebGL
-  //gl = getWebGLContext(canvas); change for more efficient render
   gl = canvas.getContext("webgl", {preserveDrawingBuffer: true});
 
   if (!gl) {
@@ -59,12 +58,6 @@ function connectVariablesToGLSL() {
       return;
     }
 
-    // // Get the storage location of u_Size
-    // u_Size = gl.getUniformLocation(gl.program, 'u_Size');
-    // if (!u_Size) {
-    //   console.log('Failed to get the storage location of u_Size');
-    //   return;
-    // }
     u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
     if (!u_ModelMatrix) {
       console.log("Failed to get the storage location of u_ModelMatrix");
@@ -130,7 +123,6 @@ function main() {
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
   // Clear <canvas>
-  // gl.clear(gl.COLOR_BUFFER_BIT);
   renderAllShapes();
 }
 
@@ -138,9 +130,6 @@ function main() {
 
 var g_shapesList = [];
 
-// var g_points = [];  // The array for the position of a mouse press
-// var g_colors = [];  // The array to store the color of a point
-// var g_sizes =  [];
 
 function click(ev) {
 
@@ -148,7 +137,6 @@ function click(ev) {
   let = [x, y] = convertCoordinatesEventToGL(ev);
 
   // Create and store the new point
-  // let point = new Triangle();
   let point;
   if (g_selectedType==POINT) {
     point = new Point();
@@ -163,30 +151,7 @@ function click(ev) {
   point.color = g_selectedColor.slice();
   point.size = g_selectedSize;
   g_shapesList.push(point);
- 
-  // When I click, we update:
 
-  // Replaced
-  // // Store the coordinates to g_points array
-  // g_points.push([x, y]);
-  // //  g_colors.push(g_selectedColor.); uses a ponter which is NOT what we want
-  // // slice is better because it forces a copy
-  // // another way to achieve this is to copy all the elements seperately
-  // // g_colors.push([g_selectedColor[0], ...])
-  // g_colors.push(g_selectedColor.slice());
-
-  // g_sizes.push(g_selectedSize);
-  // Store the coordinates to g_points array
-  // if (x >= 0.0 && y >= 0.0) {      // First quadrant
-  //   g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
-  // } else if (x < 0.0 && y < 0.0) { // Third quadrant
-  //   g_colors.push([0.0, 1.0, 0.0, 1.0]);  // Green
-  // } else {                         // Others
-  //   g_colors.push([1.0, 1.0, 1.0, 1.0]);  // White
-  // }
-
-
-  //... and here we draw
 
   // Draw every shape that is supposed to be in the canvas
   renderAllShapes();
@@ -210,21 +175,8 @@ function renderAllShapes() {
   var startTime = performance.now();
 
   // Clear <canvas>
-
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-
-  // if (clearAll == 1) {
-  //   // Clear <canvas>
-  //   gl.clear(gl.COLOR_BUFFER_BIT);
-  //   clearAll = 0;
-  // }
-
-  //  var len = g_points.length;
-  // var len = g_shapesList.length;
-  //  for(var i = 0; i < len; i++) {
-  //   g_shapesList[i].render();
-  //  }
 
   drawTriangle3D([-1.0,0.0,0.0, -0.5,-1.0,0.0, 0.0,0.0,0.0]);
 
@@ -260,18 +212,9 @@ function sendTextToHTML(text, htmlID) {
 }
 
 function drawIMG() {
-
   var snd = new Audio("./resources/audio/omni_speech.mp3");
   snd.play();
   snd.currentTime=0;
-
-
-
-  // Template:
-  // let x1 = [/100, /100
-  //           /100, /100];
-
-
   
   // White Shirt1
   let x1 = [60/100, 0/100,
