@@ -1,6 +1,6 @@
 class Cube {
     constructor() {
-        this.type='cube';
+        this.type = 'cube';
         this.color = [1.0, 1.0, 1.0, 1.0];
         this.matrix = new Matrix4();
     }
@@ -14,8 +14,8 @@ class Cube {
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
 
         // Front of cube
-        drawTriangle3D([0.0,0.0,0.0, 1.0,1.0,0.0, 1.0,0.0,0.0]);
-        drawTriangle3D([0.0,0.0,0.0, 0.0,1.0,0.0, 1.0,1.0,0.0]);
+        drawTriangle3D([0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0]);
+        drawTriangle3D([0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0]);
 
         // Other sides of cube top, bottom, left, right, back
         // fill this in yourself
