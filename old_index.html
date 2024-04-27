@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Change a point color</title>
+  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+</head>
+
+<body onload="main()" style="background-color:skyblue">
+
+  <div style="text-align: center;">
+
+    <p> _______________________________ </p>
+
+    <h1 font-size: 30px style="text-align: center; color: black; font-family: 'Bangers';">Viltrum Empire Paint Program
+    </h1>
+
+    <p>
+
+
+      <canvas id="webgl" width="400" height="400" style="border:5px solid #00a6ff;">
+        Please use a browser that supports "canvas"
+      </canvas>
+      <!-- <img src="./resources/images/omniman.png" width="400" height="400" style="border:5px solid #00a6ff;"> -->
+    <p>
+
+    <p id="numdot"> Paint Data </p>
+
+    <button type="button" id="clearButton"
+      style="font-size: 20px; color: white; width: 120px; height: 50px; background: url('./resources/images/thinkmarkthumbnail.jpeg')  no-repeat center center / cover;">Clear</button>
+
+    <p></p>
+
+    <div style="justify-content: center; display: flex; align-items: center;">
+      <img src="./resources/images/green_ghost.png" style="width: 30px; height: 30px;">
+      <button type="button" id="green" style="background-color: greenyellow; width: 50px; height: 30px">Green</button>
+    </div>
+
+    <div>
+
+      <div style="justify-content: center; display: flex; align-items: center;">
+        <img src="./resources/images/red_rush.png" style="width: 30px; height: 30px;">
+        <button type="button" id="red" style="background-color: red; width: 50px; height: 30px">Red</button>
+      </div>
+
+      <p></p>
+
+      <button type="button" id="pointButton">Point</button>
+      <button type="button" id="triButton">Triangle</button>
+      <button type="button" id="circleButton">Circle</button>
+
+      <p>
+        <button type="button" id="loadIMG"
+          style="font-size: 20px; font-weight: bold; color: brown; width: 120px; height: 50px; background: url('./resources/images/splatter.jpeg')  no-repeat center center / cover;">Load
+          Viltrumite</button>
+
+      <p>
+        Red <input type="range" min="0" max="100" value="100" class="slider" id="redSlide">
+      <p>
+        Green <input type="range" min="0" max="100" value="0" class="slider" id="greenSlide">
+      <p>
+        Blue <input type="range" min="0" max="100" value="0" class="slider" id="blueSlide">
+
+      <p>
+        Size <input type="range" min="5" max="40" value="0" class="slider" id="sizeSlide">
+      <p>
+    </div>
+
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-matrix.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Point.js"></script>
+    <script src="Cube.js"></script>
+    <script src="BlockyAnimal.js"></script>
+</body>
+
+</html>
