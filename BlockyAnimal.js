@@ -384,17 +384,35 @@ function renderAllShapes() {
   bmo21.render();
 
 
-  // Circle Button
+  // Red Circle Button
   var bmo22 = new Cone();
+  bmo22.matrix = new Matrix4(bmo1.matrix);
   bmo22.color = [1.0, 0.0, 0.0, 1.0];
-  bmo22.matrix.scale(1, 1, 0.5);
-  bmo22.matrix.translate(0, 0, -2);
+  bmo22.matrix.scale(.8, .7, 0.5);
+  bmo22.matrix.scale(.5, .5, 0.5);
+  bmo22.matrix.translate(1.1, 0.9, -.2);
   bmo22.matrix.rotate(90, 1, 0, 0);
   bmo22.render();
 
 
+  // Blue triangle button
+  var bmo23 = new TrianglePrism();
+  bmo23.matrix = new Matrix4(bmo1.matrix);
+  bmo23.color = [102 / 255, 212 / 255, 236 / 255, 1.0];
+  bmo23.matrix.scale(.2, .18, .4);
+  bmo23.matrix.scale(.5, .5, .2);
+  bmo23.matrix.translate(4.5,2.5,-.5);
+  bmo23.render();
 
-
+  // Green Circle Button
+  var bmo24 = new Cone();
+  bmo24.matrix = new Matrix4(bmo1.matrix);
+  bmo24.color = [115 / 255, 243 / 255, 77 / 255, 1];
+  bmo24.matrix.scale(.8, .7, 0.5);
+  bmo24.matrix.scale(.3, .3, 0.5);
+  bmo24.matrix.translate(2.9, 1.6, -.2);
+  bmo24.matrix.rotate(90, 1, 0, 0);
+  bmo24.render();
 
 
   // var body = new Cube();
