@@ -40,6 +40,18 @@ class Cone {
             drawTriangle3D([0.5,0.95,0.5,  x,0.05,y,  x2,0.05,y2 ]);
         }
 
+        // Drawing bottom of cone
+        for (let i = 0; i < segments; i++) {
+            let angle = i * increment;
+            let x = 0.5 + radius * Math.cos(angle);
+            let y = 0.05;
+            let z = 0.5 + radius * Math.sin(angle);
+            let x2 = 0.5 + radius * Math.cos(angle + increment);
+            let z2 = 0.5 + radius * Math.sin(angle + increment);
+            gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+            drawTriangle3D([0.5,0.05,0.5,  x,y, z,  x2,y,z2]);
+        }
+
 
         // // Front of cube
         // drawTriangle3D([0,0,0, 1,1,0, 1,0,0]);

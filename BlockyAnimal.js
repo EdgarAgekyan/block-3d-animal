@@ -354,7 +354,7 @@ function renderAllShapes() {
   bmo17.matrix.translate(0.1, 6, -0.05);
   bmo17.render();
 
-  // Yellow-buttons
+  // Yellow Buttons
   var bmo18 = new Cube();
   bmo18.matrix = new Matrix4(bmo1.matrix);
   bmo18.color = [247 / 255, 218 / 255, 80 / 255, 1];
@@ -369,14 +369,13 @@ function renderAllShapes() {
   bmo19.render();
   
 
-
+  // Long Blue Buttons
   var bmo20 = new Cube();
   bmo20.matrix = new Matrix4(bmo1.matrix);
   bmo20.color = [5 / 255, 14 / 255, 113 / 255, 1];
   bmo20.matrix.scale(.15, .03, .1);
   bmo20.matrix.translate(0.3, 2, -0.15);
   bmo20.render();
-
   var bmo21 = new Cube();
   bmo21.matrix = new Matrix4(bmo1.matrix);
   bmo21.color = [5 / 255, 14 / 255, 113 / 255, 1];
@@ -385,9 +384,10 @@ function renderAllShapes() {
   bmo21.render();
 
 
-
+  // Circle Button
   var bmo22 = new Cone();
   bmo22.color = [1.0, 0.0, 0.0, 1.0];
+  bmo22.matrix.scale(1, 1, 0.5);
   bmo22.matrix.translate(0, 0, -2);
   bmo22.matrix.rotate(90, 1, 0, 0);
   bmo22.render();
