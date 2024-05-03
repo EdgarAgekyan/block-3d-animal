@@ -632,7 +632,7 @@ function renderAllShapes() {
   bmo55.matrix = new Matrix4(bmo1.matrix);
   bmo55.color = [84 / 255, 120 / 255, 123 / 255, 1];
   bmo55.matrix.scale(.3, .08, .1)
-  bmo55.matrix.translate(3.5, 1, 4.75);
+  bmo55.matrix.translate(3.4, 1, 4.75);
   bmo55.render();
   var bmo56 = new Cube();
   bmo56.matrix = new Matrix4(bmo55.matrix);
@@ -640,7 +640,8 @@ function renderAllShapes() {
   bmo56.matrix.setTranslate(0, 0, 0);
   bmo56.matrix.rotate(135, 0, 0, 1);
   bmo56.matrix.scale(.8, .175, .175)
-  bmo56.matrix.translate(-3.21, -3.58, -.2);
+  bmo56.matrix.translate(-3.14, -3.28, -.2);
+  bmo56
   bmo56.render();
 
   // Left Arm
