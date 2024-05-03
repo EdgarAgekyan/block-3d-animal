@@ -151,7 +151,7 @@ function tick() {
 
   // Save the current time
   g_seconds = performance.now() / 1000.0 - g_startTime;
-  console.log(g_seconds);
+  // console.log(g_seconds);
 
   // // Print some debug information so we know we are running
   // console.log(performance.now());
@@ -385,6 +385,12 @@ function renderAllShapes() {
   bmo21.render();
 
 
+
+  var bmo22 = new Cone();
+  bmo22.color = [1.0, 0.0, 0.0, 1.0];
+  bmo22.matrix.translate(0, 0, -2);
+  bmo22.matrix.rotate(90, 1, 0, 0);
+  bmo22.render();
 
 
 
