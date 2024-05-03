@@ -605,10 +605,17 @@ function renderAllShapes() {
   bmo52.matrix.translate(-0.05, 4.2, 0.8);
   bmo52.render();
   var bmo53 = new Cone();
+  bmo53.matrix = new Matrix4(bmo1.matrix);
   bmo53.color = [0, 0, 0, 1];
-  bmo53.matrix.translate(-1.1, -0.45, -.45);
+  bmo53.matrix.scale(0.4, 0.4, .7);
   bmo53.matrix.rotate(270,0, 0, 1);
+  bmo53.matrix.translate(-0.78, -0.1, 0.25);
+
   bmo53.render();
+
+  // Right Arm
+  // var bmo53 = new Cube();
+  
 
 
 
