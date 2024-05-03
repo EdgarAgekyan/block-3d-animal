@@ -12,7 +12,6 @@ class Cube {
 
         // Pass the matrix to u_ModelMatrix attribute
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
-
         
 
         // Front of cube
@@ -24,6 +23,9 @@ class Cube {
         // Back of cube
         drawTriangle3D([0,0,1, 1,1,1, 1,0,1]);
         drawTriangle3D([0,0,1, 0,1,1, 1,1,1]);
+
+        gl.uniform4f(u_FragColor, rgba[0]*.8, rgba[1]*.8, rgba[2]*.8, rgba[3]);
+
 
         // Top of cube
         drawTriangle3D([0,1,0, 0,1,1, 1,1,1]);

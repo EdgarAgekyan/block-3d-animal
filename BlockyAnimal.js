@@ -104,16 +104,10 @@ function addActionsForHtmlUI() {
   document.getElementById('triButton').onclick = function () { g_selectedType = TRIANGLE };
   document.getElementById('circleButton').onclick = function () { g_selectedType = CIRCLE };
 
+  document.getElementById('animationYellowOnButton').onclick = function () { g_yellowAnimation = true; }
+  document.getElementById('animationYellowOffButton').onclick = function () { g_yellowAnimation = false; }
 
-  // Slider Events
-  // document.getElementById('redSlide').addEventListener('mouseup', function () { g_selectedColor[0] = this.value / 100; });
-  // document.getElementById('greenSlide').addEventListener('mouseup', function () { g_selectedColor[1] = this.value / 100; });
-  // document.getElementById('blueSlide').addEventListener('mouseup', function () { g_selectedColor[2] = this.value / 100; });
 
-  document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;}
-  document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;}
-
-  
   document.getElementById('yellowSlide').addEventListener('mousemove', function () { g_yellowAngle = this.value; renderAllShapes(); });
 
   document.getElementById('magentaSlide').addEventListener('mousemove', function () { g_magentaAngle = this.value; renderAllShapes(); });
@@ -148,14 +142,15 @@ function main() {
   requestAnimationFrame(tick);
 }
 
-var g_startTime = performance.now()/1000.0;
-var g_seconds = performance.now()/1000.0 - g_startTime;
+
+var g_startTime = performance.now() / 1000.0;
+var g_seconds = performance.now() / 1000.0 - g_startTime;
 
 // Called by browser repeatedly whenever its time
 function tick() {
 
   // Save the current time
-  g_seconds = performance.now()/1000.0 - g_startTime;
+  g_seconds = performance.now() / 1000.0 - g_startTime;
   console.log(g_seconds);
 
   // // Print some debug information so we know we are running
@@ -216,60 +211,215 @@ function convertCoordinatesEventToGL(ev) {
 
 function updateAnimationAngles() {
   if (g_yellowAnimation) {
-    g_yellowAngle = (45*Math.sin(g_seconds));
+    g_yellowAngle = (45 * Math.sin(g_seconds));
   }
 }
 
 function renderAllShapes() {
 
-  // Check the time at the start of this function
-  var startTime = performance.now();
-
-  // Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0);
-  gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
-
-  // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  var body = new Cube();
-  body.color = [1.0, 0.0, 0.0, 1.0];
-  body.matrix.translate(-0.25, -0.75, 0.0);
-  body.matrix.rotate(-5, 1, 0, 0);
-  body.matrix.scale(0.5, 0.3, 0.5);
-  body.render();
+  // Check the time at the start of this function
+  var startTime = performance.now();
 
-  // Draw a left arm
-  var leftArm = new Cube();
-  leftArm.color = [1, 1, 0, 1];
-  leftArm.matrix.setTranslate(0, -0.5, 0.0);
-  leftArm.matrix.rotate(-5, 1, 0, 0);
-  leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);
+  var scale = 0.4; // To simulate camera moving away
 
-  // if (g_yellowAnimation) {
-  //   leftArm.matrix.rotate(45 * Math.sin(g_seconds), 0, 0, 1);
-  // }
-  // else {
-  //   leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);
-  // }
+  // Pass the matrix to u_ModelMatrix attribute
+  var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).scale(scale, scale, scale);
+  gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
+
+  // Clear <canvas>
+
+
+
+
+
+  // Main body
+  var bmo1 = new Cube();
+  bmo1.color = [112 / 255, 170 / 255, 153 / 255, 1.0];
+  bmo1.matrix.scale(2, 2.4, 1.4);
+  bmo1.matrix.translate(-0.5, -0.5, -0.5);
+  bmo1.render();
+
+  var bodyCoord = new Matrix4(bmo1.matrix);
+
+  // Face-Screen
+  var bmo2 = new Cube();
+  bmo2.matrix = bodyCoord;
+  bmo2.color = [215 / 255, 254 / 255, 221 / 255, 1.0];
+  bmo2.matrix.scale(.9, .5, .1);
+  bmo2.matrix.translate(.05, .9, -0.01);
+  bmo2.render();
+
+  // We do this every time between blocks to make sure a copy is being made.
+  // Probably not super efficient
+
+
+  // Speaker on left side of BMO
+  var bmo3 = new Cube();
+  bmo3.matrix = new Matrix4(bmo1.matrix);
+  bmo3.color = [0, 0, 0, 1];
+  bmo3.matrix.scale(.1, .02, .04);
+  bmo3.matrix.translate(9.05, 40, 10);
+  bmo3.render();
+  var bmo4 = new Cube();
+  bmo4.matrix = new Matrix4(bmo1.matrix);
+  bmo4.color = [0, 0, 0, 1];
+  bmo4.matrix.scale(.1, .02, .04);
+  bmo4.matrix.translate(9.05, 40, 15);
+  bmo4.render();
+  var bmo5 = new Cube();
+  bmo5.matrix = new Matrix4(bmo1.matrix);
+  bmo5.color = [0, 0, 0, 1];
+  bmo5.matrix.scale(.1, .02, .04);
+  bmo5.matrix.translate(9.05, 35, 8);
+  bmo5.render();
+  var bmo6 = new Cube();
+  bmo6.matrix = new Matrix4(bmo1.matrix);
+  bmo6.color = [0, 0, 0, 1];
+  bmo6.matrix.scale(.1, .02, .04);
+  bmo6.matrix.translate(9.05, 35, 12.5);
+  bmo6.render();
+  var bmo7 = new Cube();
+  bmo7.matrix = new Matrix4(bmo1.matrix);
+  bmo7.color = [0, 0, 0, 1];
+  bmo7.matrix.scale(.1, .02, .04);
+  bmo7.matrix.translate(9.05, 35, 17);
+  bmo7.render();
+  var bmo8 = new Cube();
+  bmo8.matrix = new Matrix4(bmo1.matrix);
+  bmo8.color = [0, 0, 0, 1];
+  bmo8.matrix.scale(.1, .02, .04);
+  bmo8.matrix.translate(9.05, 30, 10);
+  bmo8.render();
+  var bmo9 = new Cube();
+  bmo9.matrix = new Matrix4(bmo1.matrix);
+  bmo9.color = [0, 0, 0, 1];
+  bmo9.matrix.scale(.1, .02, .04);
+  bmo9.matrix.translate(9.05, 30, 15);
+  bmo9.render();
+
+
+  // Speaker on right side of BMO
+  var bmo10 = new Cube();
+  bmo10.matrix = new Matrix4(bmo1.matrix);
+  bmo10.color = [0, 0, 0, 1];
+  bmo10.matrix.scale(.1, .02, .04);
+  bmo10.matrix.translate(-0.05, 40, 10);
+  bmo10.render();
+  var bmo11 = new Cube();
+  bmo11.matrix = new Matrix4(bmo1.matrix);
+  bmo11.color = [0, 0, 0, 1];
+  bmo11.matrix.scale(.1, .02, .04);
+  bmo11.matrix.translate(-0.05, 40, 15);
+  bmo11.render();
+  var bmo12 = new Cube();
+  bmo12.matrix = new Matrix4(bmo1.matrix);
+  bmo12.color = [0, 0, 0, 1];
+  bmo12.matrix.scale(.1, .02, .04);
+  bmo12.matrix.translate(-0.05, 35, 8);
+  bmo12.render();
+  var bmo13 = new Cube();
+  bmo13.matrix = new Matrix4(bmo1.matrix);
+  bmo13.color = [0, 0, 0, 1];
+  bmo13.matrix.scale(.1, .02, .04);
+  bmo13.matrix.translate(-0.05, 35, 12.5);
+  bmo13.render();
+  var bmo14 = new Cube();
+  bmo14.matrix = new Matrix4(bmo1.matrix);
+  bmo14.color = [0, 0, 0, 1];
+  bmo14.matrix.scale(.1, .02, .04);
+  bmo14.matrix.translate(-0.05, 35, 17);
+  bmo14.render();
+  var bmo15 = new Cube();
+  bmo15.matrix = new Matrix4(bmo1.matrix);
+  bmo15.color = [0, 0, 0, 1];
+  bmo15.matrix.scale(.1, .02, .04);
+  bmo15.matrix.translate(-0.05, 30, 10);
+  bmo15.render();
+  var bmo16 = new Cube();
+  bmo16.matrix = new Matrix4(bmo1.matrix);
+  bmo16.color = [0, 0, 0, 1];
+  bmo16.matrix.scale(.1, .02, .04);
+  bmo16.matrix.translate(-0.05, 30, 15);
+  bmo16.render();
+
+  
+  // Game-Slot
+  var bmo17 = new Cube();
+  bmo17.matrix = new Matrix4(bmo1.matrix);
+  bmo17.color = [21 / 255, 46 / 255, 38 / 255, 1];
+  bmo17.matrix.scale(.5, .06, .1);
+  bmo17.matrix.translate(0.1, 6, -0.05);
+  bmo17.render();
+
+  // Yellow-buttons
+  var bmo18 = new Cube();
+  bmo18.matrix = new Matrix4(bmo1.matrix);
+  bmo18.color = [247 / 255, 218 / 255, 80 / 255, 1];
+  bmo18.matrix.scale(.06, .15, .1);
+  bmo18.matrix.translate(3, 1, -.4);
+  bmo18.render();
+  var bmo19 = new Cube();
+  bmo19.matrix = new Matrix4(bmo1.matrix);
+  bmo19.color = [247 / 255, 218 / 255, 80 / 255, 1];
+  bmo19.matrix.scale(.2, .06, .1);
+  bmo19.matrix.translate(0.555, 3.3, -.4);
+  bmo19.render();
+  
+
+
+  var bmo20 = new Cube();
+  bmo20.matrix = new Matrix4(bmo1.matrix);
+  bmo20.color = [5 / 255, 14 / 255, 113 / 255, 1];
+  bmo20.matrix.scale(.15, .03, .1);
+  bmo20.matrix.translate(0.3, 2, -0.15);
+  bmo20.render();
+
+  var bmo21 = new Cube();
+  bmo21.matrix = new Matrix4(bmo1.matrix);
+  bmo21.color = [5 / 255, 14 / 255, 113 / 255, 1];
+  bmo21.matrix.scale(.15, .03, .1);
+  bmo21.matrix.translate(1.6, 2, -0.15);
+  bmo21.render();
+
+
+
+
+
+
+
+
+  // var body = new Cube();
+  // body.color = [1.0, 0.0, 0.0, 1.0];
+  // body.matrix.translate(-0.25, -0.75, 0.0);
+  // body.matrix.rotate(-5, 1, 0, 0);
+  // body.matrix.scale(0.5, 0.3, 0.5);
+  // body.render();
+
+  // // Draw a left arm
+  // var leftArm = new Cube();
+  // leftArm.color = [1, 1, 0, 1];
+  // leftArm.matrix.setTranslate(0, -0.5, 0.0);
+  // leftArm.matrix.rotate(-5, 1, 0, 0);
   // leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);
 
 
-  var yellowCoordinatesMat = new Matrix4(leftArm.matrix);
-  leftArm.matrix.scale(0.25, 0.7, 0.5);
-  leftArm.matrix.translate(-0.5, 0, 0);
-  leftArm.render();
+  // var yellowCoordinatesMat = new Matrix4(leftArm.matrix);
+  // leftArm.matrix.scale(0.25, 0.7, 0.5);
+  // leftArm.matrix.translate(-0.5, 0, 0);
+  // leftArm.render();
 
-  var box = new Cube();
-  box.color = [1, 0, 1, 1];
-  box.matrix = yellowCoordinatesMat;
-  box.matrix.translate(0, 0.65, 0);
-  box.matrix.rotate(g_magentaAngle, 0, 0, 1);
-  box.matrix.scale(0.3, 0.3, 0.3);
-  box.matrix.translate(-0.5, 0, -0.001);
-  // box.matrix.scale(0.2, 0.4, 0.2);
-  box.render();
+  // var box = new Cube();
+  // box.color = [1, 0, 1, 1];
+  // box.matrix = yellowCoordinatesMat;
+  // box.matrix.translate(0, 0.65, 0);
+  // box.matrix.rotate(g_magentaAngle, 0, 0, 1);
+  // box.matrix.scale(0.3, 0.3, 0.3);
+  // box.matrix.translate(-0.5, 0, -0.001);
+  // // box.matrix.scale(0.2, 0.4, 0.2);
+  // box.render();
 
 
   // Check the time at the end of the function, and show on web page
