@@ -115,7 +115,7 @@ function addActionsForHtmlUI() {
   // Size Slider Events
   // document.getElementById('angleSlide').addEventListener('mouseup', function () { g_globalAngle = this.value; renderAllShapes(); });
   document.getElementById('angleSlide').addEventListener('mousemove', function () { g_globalAngle = this.value; renderAllShapes(); });
-
+  g_globalAngle = 270;
 }
 
 function main() {
@@ -223,7 +223,7 @@ function renderAllShapes() {
   // Check the time at the start of this function
   var startTime = performance.now();
 
-  var scale = 0.4; // To simulate camera moving away
+  var scale = 0.35; // To simulate camera moving away
 
   // Pass the matrix to u_ModelMatrix attribute
   var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).scale(scale, scale, scale);
@@ -261,43 +261,43 @@ function renderAllShapes() {
   bmo3.matrix = new Matrix4(bmo1.matrix);
   bmo3.color = [0, 0, 0, 1];
   bmo3.matrix.scale(.1, .02, .04);
-  bmo3.matrix.translate(9.05, 40, 10);
+  bmo3.matrix.translate(9.05, 45, 10);
   bmo3.render();
   var bmo4 = new Cube();
   bmo4.matrix = new Matrix4(bmo1.matrix);
   bmo4.color = [0, 0, 0, 1];
   bmo4.matrix.scale(.1, .02, .04);
-  bmo4.matrix.translate(9.05, 40, 15);
+  bmo4.matrix.translate(9.05, 45, 15);
   bmo4.render();
   var bmo5 = new Cube();
   bmo5.matrix = new Matrix4(bmo1.matrix);
   bmo5.color = [0, 0, 0, 1];
   bmo5.matrix.scale(.1, .02, .04);
-  bmo5.matrix.translate(9.05, 35, 8);
+  bmo5.matrix.translate(9.05, 40, 8);
   bmo5.render();
   var bmo6 = new Cube();
   bmo6.matrix = new Matrix4(bmo1.matrix);
   bmo6.color = [0, 0, 0, 1];
   bmo6.matrix.scale(.1, .02, .04);
-  bmo6.matrix.translate(9.05, 35, 12.5);
+  bmo6.matrix.translate(9.05, 40, 12.5);
   bmo6.render();
   var bmo7 = new Cube();
   bmo7.matrix = new Matrix4(bmo1.matrix);
   bmo7.color = [0, 0, 0, 1];
   bmo7.matrix.scale(.1, .02, .04);
-  bmo7.matrix.translate(9.05, 35, 17);
+  bmo7.matrix.translate(9.05, 40, 17);
   bmo7.render();
   var bmo8 = new Cube();
   bmo8.matrix = new Matrix4(bmo1.matrix);
   bmo8.color = [0, 0, 0, 1];
   bmo8.matrix.scale(.1, .02, .04);
-  bmo8.matrix.translate(9.05, 30, 10);
+  bmo8.matrix.translate(9.05, 35, 10);
   bmo8.render();
   var bmo9 = new Cube();
   bmo9.matrix = new Matrix4(bmo1.matrix);
   bmo9.color = [0, 0, 0, 1];
   bmo9.matrix.scale(.1, .02, .04);
-  bmo9.matrix.translate(9.05, 30, 15);
+  bmo9.matrix.translate(9.05, 35, 15);
   bmo9.render();
 
 
@@ -345,7 +345,7 @@ function renderAllShapes() {
   bmo16.matrix.translate(-0.05, 30, 15);
   bmo16.render();
 
-  
+
   // Game-Slot
   var bmo17 = new Cube();
   bmo17.matrix = new Matrix4(bmo1.matrix);
@@ -367,7 +367,7 @@ function renderAllShapes() {
   bmo19.matrix.scale(.2, .06, .1);
   bmo19.matrix.translate(0.555, 3.3, -.4);
   bmo19.render();
-  
+
 
   // Long Blue Buttons
   var bmo20 = new Cube();
@@ -401,7 +401,7 @@ function renderAllShapes() {
   bmo23.color = [102 / 255, 212 / 255, 236 / 255, 1.0];
   bmo23.matrix.scale(.2, .18, .4);
   bmo23.matrix.scale(.5, .5, .2);
-  bmo23.matrix.translate(4.5,2.5,-.5);
+  bmo23.matrix.translate(4.5, 2.5, -.5);
   bmo23.render();
 
   // Green Circle Button
@@ -413,6 +413,204 @@ function renderAllShapes() {
   bmo24.matrix.translate(2.9, 1.6, -.2);
   bmo24.matrix.rotate(90, 1, 0, 0);
   bmo24.render();
+
+  // Blue Circle Button
+  var bmo25 = new Cone();
+  bmo25.matrix = new Matrix4(bmo1.matrix);
+  bmo25.color = [5 / 255, 14 / 255, 113 / 255, 1];
+  bmo25.matrix.scale(.8, .7, 0.5);
+  bmo25.matrix.scale(.15, .15, 0.5);
+  bmo25.matrix.translate(6.5, 4.2, -.2);
+  bmo25.matrix.rotate(90, 1, 0, 0);
+  bmo25.render();
+
+  // Right leg
+  var bmo26 = new Cube();
+  bmo26.matrix = new Matrix4(bmo1.matrix);
+  bmo26.color = [84 / 255, 120 / 255, 123 / 255, 1];
+  bmo26.matrix.scale(.1, .15, .1);
+  bmo26.matrix.translate(2.5, -1, 4);
+  bmo26.render();
+  var bmo27 = new Cube();
+  bmo27.matrix = new Matrix4(bmo26.matrix);
+  bmo27.color = [84 / 255, 120 / 255, 123 / 255, 1];
+  bmo27.matrix.translate(0, -1, 0);
+  bmo27.render();
+  // Right foot
+  var bmo28 = new Cube();
+  bmo28.matrix = new Matrix4(bmo27.matrix);
+  bmo28.color = [71 / 255, 96 / 255, 98 / 255, 1];
+  bmo28.matrix.scale(1, .4, 2.5);
+  bmo28.matrix.translate(0, -1, -.6);
+  bmo28.render();
+
+
+  // Left leg
+  var bmo29 = new Cube();
+  bmo29.matrix = new Matrix4(bmo1.matrix);
+  bmo29.color = [84 / 255, 120 / 255, 123 / 255, 1];
+  bmo29.matrix.scale(.1, .15, .1);
+  bmo29.matrix.translate(6, -1, 4);
+  bmo29.render();
+  var bmo30 = new Cube();
+  bmo30.matrix = new Matrix4(bmo29.matrix);
+  bmo30.color = [84 / 255, 120 / 255, 123 / 255, 1];
+  bmo30.matrix.translate(0, -1, 0);
+  bmo30.render();
+  // Left foot
+  var bmo31 = new Cube();
+  bmo31.matrix = new Matrix4(bmo30.matrix);
+  bmo31.color = [71 / 255, 96 / 255, 98 / 255, 1];
+  bmo31.matrix.scale(1, .4, 2.5);
+  bmo31.matrix.translate(0, -1, -.6);
+  bmo31.render();
+
+  // BMO Name Left Side
+  var bmo32 = new Cube();
+  bmo32.matrix = new Matrix4(bmo1.matrix);
+  bmo32.color = [0, 0, 0, 1];
+  bmo32.matrix.scale(.1, .075, .4);
+  bmo32.matrix.translate(9.05, 7.5, .8);
+  bmo32.render();
+  var bmo33 = new Cube();
+  bmo33.matrix = new Matrix4(bmo1.matrix);
+  bmo33.color = [0, 0, 0, 1];
+  bmo33.matrix.scale(.1, .15, .1);
+  bmo33.matrix.translate(9.05, 3, 2.9);
+  bmo33.render();
+  var bmo34 = new Cube();
+  bmo34.matrix = new Matrix4(bmo1.matrix);
+  bmo34.color = [0, 0, 0, 1];
+  bmo34.matrix.scale(.1, .15, .1);
+  bmo34.matrix.translate(9.05, 3, 4.9);
+  bmo34.render();
+  var bmo35 = new Cube();
+  bmo35.matrix = new Matrix4(bmo1.matrix);
+  bmo35.color = [0, 0, 0, 1];
+  bmo35.matrix.scale(.1, .15, .1);
+  bmo35.matrix.translate(9.05, 3, 6.6);
+  bmo35.render();
+  var bmo36 = new Cube();
+  bmo36.matrix = new Matrix4(bmo1.matrix);
+  bmo36.color = [0, 0, 0, 1];
+  bmo36.matrix.scale(.1, .05, .1);
+  bmo36.matrix.translate(9.05, 8.5, 5.9);
+  bmo36.render();
+  var bmo37 = new Cube();
+  bmo37.matrix = new Matrix4(bmo1.matrix);
+  bmo37.color = [0, 0, 0, 1];
+  bmo37.matrix.scale(.1, .05, .1);
+  bmo37.matrix.translate(9.05, 8.5, 3.9);
+  bmo37.render();
+  var bmo38 = new Cube();
+  bmo38.matrix = new Matrix4(bmo1.matrix);
+  bmo38.color = [0, 0, 0, 1];
+  bmo38.matrix.scale(.1, .05, .4);
+  bmo38.matrix.translate(9.05, 7, 0.8);
+  bmo38.render();
+  var bmo39 = new Cube();
+  bmo39.matrix = new Matrix4(bmo1.matrix);
+  bmo39.color = [0, 0, 0, 1];
+  bmo39.matrix.setTranslate(0, 0, 0);
+  bmo39.matrix.rotate(170, 1, 0, 0);
+  bmo39.matrix.scale(.2, .1, .4);
+  bmo39.matrix.translate(4.05, 3.8, -0.6);
+  bmo39.render();
+  var bmo40 = new Cube();
+  bmo40.matrix = new Matrix4(bmo1.matrix);
+  bmo40.color = [0, 0, 0, 1];
+  bmo40.matrix.setTranslate(0, 0, 0);
+  bmo40.matrix.rotate(10, 1, 0, 0);
+  bmo40.matrix.scale(.2, .1, .4);
+  bmo40.matrix.translate(4.05, -5.5, 0);
+  bmo40.render();
+  var bmo41 = new Cube();
+  bmo41.matrix = new Matrix4(bmo1.matrix);
+  bmo41.color = [0, 0, 0, 1];
+  bmo41.matrix.scale(.1, .05, .4);
+  bmo41.matrix.translate(9.05, 4, 0.8);
+  bmo41.render();
+  var bmo42 = new Cone();
+  bmo42.color = [0, 0, 0, 1];
+  bmo42.matrix.translate(1.1, -1.45, -.45);
+  bmo42.matrix.rotate(90,0, 0, 1);
+  bmo42.render();
+
+
+
+
+  // BMO Name Right Side
+  var bmo43 = new Cube();
+  bmo43.matrix = new Matrix4(bmo1.matrix);
+  bmo43.color = [0, 0, 0, 1];
+  bmo43.matrix.scale(.1, .075, .4);
+  bmo43.matrix.translate(-0.05, 7.5, .8);
+  bmo43.render();
+  var bmo44 = new Cube();
+  bmo44.matrix = new Matrix4(bmo1.matrix);
+  bmo44.color = [0, 0, 0, 1];
+  bmo44.matrix.scale(.1, .15, .1);
+  bmo44.matrix.translate(-0.05, 3, 2.9);
+  bmo44.render();
+  var bmo45 = new Cube();
+  bmo45.matrix = new Matrix4(bmo1.matrix);
+  bmo45.color = [0, 0, 0, 1];
+  bmo45.matrix.scale(.1, .15, .1);
+  bmo45.matrix.translate(-0.05, 3, 4.9);
+  bmo45.render();
+  var bmo46 = new Cube();
+  bmo46.matrix = new Matrix4(bmo1.matrix);
+  bmo46.color = [0, 0, 0, 1];
+  bmo46.matrix.scale(.1, .15, .1);
+  bmo46.matrix.translate(-0.05, 3, 6.6);
+  bmo46.render();
+  var bmo47 = new Cube();
+  bmo47.matrix = new Matrix4(bmo1.matrix);
+  bmo47.color = [0, 0, 0, 1];
+  bmo47.matrix.scale(.1, .05, .1);
+  bmo47.matrix.translate(-0.05, 8.5, 5.9);
+  bmo47.render();
+  var bmo48 = new Cube();
+  bmo48.matrix = new Matrix4(bmo1.matrix);
+  bmo48.color = [0, 0, 0, 1];
+  bmo48.matrix.scale(.1, .05, .1);
+  bmo48.matrix.translate(-0.05, 8.5, 3.9);
+  bmo48.render();
+  var bmo49 = new Cube();
+  bmo49.matrix = new Matrix4(bmo1.matrix);
+  bmo49.color = [0, 0, 0, 1];
+  bmo49.matrix.scale(.1, .05, .4);
+  bmo49.matrix.translate(-0.05, 7, 0.8);
+  bmo49.render();
+  var bmo50 = new Cube();
+  bmo50.matrix = new Matrix4(bmo1.matrix);
+  bmo50.color = [0, 0, 0, 1];
+  bmo50.matrix.setTranslate(0, 0, 0);
+  bmo50.matrix.rotate(170, 1, 0, 0);
+  bmo50.matrix.scale(.2, .1, .4);
+  bmo50.matrix.translate(-5.05, 4.5, -0.1);
+  bmo50.render();
+  var bmo51 = new Cube();
+  bmo51.matrix = new Matrix4(bmo1.matrix);
+  bmo51.color = [0, 0, 0, 1];
+  bmo51.matrix.setTranslate(0, 0, 0);
+  bmo51.matrix.rotate(10, 1, 0, 0);
+  bmo51.matrix.scale(.2, .1, .4);
+  bmo51.matrix.translate(-5.05, -4.7, -0.5);
+  bmo51.render();
+  var bmo52 = new Cube();
+  bmo52.matrix = new Matrix4(bmo1.matrix);
+  bmo52.color = [0, 0, 0, 1];
+  bmo52.matrix.scale(.1, .05, .4);
+  bmo52.matrix.translate(-0.05, 4.2, 0.8);
+  bmo52.render();
+  var bmo53 = new Cone();
+  bmo53.color = [0, 0, 0, 1];
+  bmo53.matrix.translate(-1.1, -0.45, -.45);
+  bmo53.matrix.rotate(270,0, 0, 1);
+  bmo53.render();
+
+
 
 
   // var body = new Cube();
