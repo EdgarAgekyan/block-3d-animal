@@ -91,6 +91,12 @@ let g_globalAngle = 0;
 let g_yellowAngle = 0;
 let g_magentaAngle = 0;
 let g_yellowAnimation = false;
+let g_upAndDown = 0;
+
+let x = 0;
+let y = 0;
+let x_rot = 0;
+let y_rot = 0;
 
 // Set up actions for the HTML UI elements
 function addActionsForHtmlUI() {
@@ -100,7 +106,20 @@ function addActionsForHtmlUI() {
   // document.getElementById('yellowSlide').addEventListener('mousemove', function () { g_yellowAngle = this.value; renderAllShapes(); });
   // document.getElementById('magentaSlide').addEventListener('mousemove', function () { g_magentaAngle = this.value; renderAllShapes(); });
 
-  document.getElementById('angleSlide').addEventListener('mousemove', function () { g_globalAngle = this.value; renderAllShapes(); });
+  document.getElementById('clear').onclick = function() {
+    g_globalAngle = 0,
+    g_upAndDown = 0,
+    document.getElementById('angleSlide1').value = 0,
+    document.getElementById('angleSlide2').value = 0;
+    x = 0;
+    y = 0;
+    x_rot = 0;
+    y_rot = 0;
+  }
+
+  document.getElementById('angleSlide1').addEventListener('mousemove', function () { g_globalAngle = this.value; renderAllShapes(); });
+  document.getElementById('angleSlide2').addEventListener('mousemove', function () { g_upAndDown = this.value; renderAllShapes(); });
+
 }
 
 function main() {
@@ -154,10 +173,7 @@ function tick() {
 
 
 var g_shapesList = [];
-let x = 0;
-let y = 0;
-let x_rot = 0;
-let y_rot = 0;
+
 
 function click(ev) {
 
@@ -224,7 +240,7 @@ function renderAllShapes() {
   var scale = 0.35; // To simulate camera moving away
 
   // Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).scale(scale, scale, scale).rotate(-x_rot, 0, 1, 0).rotate(y_rot, 1, 0, 0);
+  var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).rotate(g_upAndDown, 1, 0, 0).scale(scale, scale, scale).rotate(-x_rot, 0, 1, 0).rotate(y_rot, 1, 0, 0);
 
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 

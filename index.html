@@ -10,17 +10,11 @@
     <canvas id="webgl" width="400" height="400">
         Please use a browser that supports "canvas"
     </canvas>
-    <p>
-    <p id="numdot"> Paint Data </p>
 
-    <button type="button" id="green">Green</button>
-    <button type="button" id="red">Red</button>
-    <button type="button" id="clearButton">Clear</button>
-    <p>
-        <button type="button" id="pointButton">Point</button>
-        <button type="button" id="triButton">Triangle</button>
-        <button type="button" id="circleButton">Circle</button>
-    <p>
+    <p id="numdot"> Performance </p>
+
+    <button type="button" id="clear">RESET</button>
+
     <p>
         Yellow <input type="range" min="-45" max="45" value="0" class="slider" id="yellowSlide">
     <p>
@@ -29,10 +23,12 @@
         <button type="button" id="animationYellowOnButton">ON</button>
         <button type="button" id="animationYellowOffButton">OFF</button>
     <p>
-        Camera Angle <input type="range" min="0" max="360" value="0" class="slider" id="angleSlide">
+        Camera Angle 1: <input type="range" min="0" max="360" value="0" class="slider" id="angleSlide1">
     <p>
-        <!-- Camera Angle2 <input type="range" min="0" max="90" value="5" class="slider" id="angleSlide2">
-    <p>    -->
+        Camera Angle 2: <input type="range" min="0" max="360" value="0" class="slider" id="angleSlide2">
+    <p>
+
+
         <script src="lib/webgl-utils.js"></script>
         <script src="lib/webgl-debug.js"></script>
         <script src="lib/cuon-matrix.js"></script>
