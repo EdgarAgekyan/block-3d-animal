@@ -138,7 +138,8 @@ function addActionsForHtmlUI() {
     g_rightLeg = 0,
     g_rightFoot = 0;
     g_shiftClick = 0;
-    g_shiftAnimation = 0;
+    g_shiftAnimation = 0,
+    g_yellowAngle = 0;
   }
 
   document.getElementById('angleSlide1').addEventListener('mousemove', function () { g_globalAngle = this.value; renderAllShapes(); });
