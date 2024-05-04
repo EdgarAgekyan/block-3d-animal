@@ -95,25 +95,11 @@ let g_yellowAnimation = false;
 // Set up actions for the HTML UI elements
 function addActionsForHtmlUI() {
 
-  // Button Events (Shape Type)
-  document.getElementById('green').onclick = function () { g_selectedColor = [0.0, 1.0, 0.0, 1.0]; };
-  document.getElementById('red').onclick = function () { g_selectedColor = [1.0, 0.0, 0.0, 1.0]; };
-  document.getElementById('clearButton').onclick = function () { g_shapesList = []; clearAll = 1; renderAllShapes(); };
-
-  document.getElementById('pointButton').onclick = function () { g_selectedType = POINT };
-  document.getElementById('triButton').onclick = function () { g_selectedType = TRIANGLE };
-  document.getElementById('circleButton').onclick = function () { g_selectedType = CIRCLE };
-
   document.getElementById('animationYellowOnButton').onclick = function () { g_yellowAnimation = true; }
   document.getElementById('animationYellowOffButton').onclick = function () { g_yellowAnimation = false; }
+  // document.getElementById('yellowSlide').addEventListener('mousemove', function () { g_yellowAngle = this.value; renderAllShapes(); });
+  // document.getElementById('magentaSlide').addEventListener('mousemove', function () { g_magentaAngle = this.value; renderAllShapes(); });
 
-
-  document.getElementById('yellowSlide').addEventListener('mousemove', function () { g_yellowAngle = this.value; renderAllShapes(); });
-
-  document.getElementById('magentaSlide').addEventListener('mousemove', function () { g_magentaAngle = this.value; renderAllShapes(); });
-
-  // Size Slider Events
-  // document.getElementById('angleSlide').addEventListener('mouseup', function () { g_globalAngle = this.value; renderAllShapes(); });
   document.getElementById('angleSlide').addEventListener('mousemove', function () { g_globalAngle = this.value; renderAllShapes(); });
 }
 
@@ -169,7 +155,7 @@ function tick() {
 
 var g_shapesList = [];
 
-
+let x, y;
 function click(ev) {
 
   // Extract the event click and return it in WebGL coordinates
@@ -225,7 +211,8 @@ function renderAllShapes() {
   var scale = 0.35; // To simulate camera moving away
 
   // Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).scale(scale, scale, scale);
+  var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).scale(scale, scale, scale).rotate(x*100, 0, 0, 1).rotate(y*100, 0,1,0);
+
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   // Clear <canvas>
@@ -253,7 +240,6 @@ function renderAllShapes() {
 
   // We do this every time between blocks to make sure a copy is being made.
   // Probably not super efficient
-
 
   // Speaker on left side of BMO
   var bmo3 = new Cube();
@@ -530,9 +516,11 @@ function renderAllShapes() {
   bmo41.matrix.translate(9.05, 4, 0.8);
   bmo41.render();
   var bmo42 = new Cone();
+  bmo42.matrix = new Matrix4(bmo1.matrix);
   bmo42.color = [9 / 255, 30 / 255, 64 / 255, 1];
-  bmo42.matrix.translate(1.1, -1.45, -.45);
+  bmo42.matrix.scale(0.4, 0.4, .7);
   bmo42.matrix.rotate(90, 0, 0, 1);
+  bmo42.matrix.translate(-0.2, -2.6, 0.25);
   bmo42.render();
 
 
