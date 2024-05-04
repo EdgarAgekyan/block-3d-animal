@@ -98,6 +98,11 @@ let y = 0;
 let x_rot = 0;
 let y_rot = 0;
 
+let g_leftArm = 0;
+let g_leftHand = 0;
+let g_rightArm = 0;
+let g_rightHand = 0;
+
 // Set up actions for the HTML UI elements
 function addActionsForHtmlUI() {
 
@@ -106,19 +111,29 @@ function addActionsForHtmlUI() {
   // document.getElementById('yellowSlide').addEventListener('mousemove', function () { g_yellowAngle = this.value; renderAllShapes(); });
   // document.getElementById('magentaSlide').addEventListener('mousemove', function () { g_magentaAngle = this.value; renderAllShapes(); });
 
-  document.getElementById('clear').onclick = function() {
+  document.getElementById('clear').onclick = function () {
     g_globalAngle = 0,
-    g_upAndDown = 0,
-    document.getElementById('angleSlide1').value = 0,
-    document.getElementById('angleSlide2').value = 0;
+      g_upAndDown = 0,
+      document.getElementById('angleSlide1').value = 0,
+      document.getElementById('angleSlide2').value = 0;
     x = 0;
     y = 0;
     x_rot = 0;
-    y_rot = 0;
+    y_rot = 0,
+      g_leftArm = 0,
+      g_leftHand = 0,
+      g_rightArm = 0,
+      g_rightHand = 0;
   }
 
   document.getElementById('angleSlide1').addEventListener('mousemove', function () { g_globalAngle = this.value; renderAllShapes(); });
   document.getElementById('angleSlide2').addEventListener('mousemove', function () { g_upAndDown = this.value; renderAllShapes(); });
+
+  document.getElementById('leftArm').addEventListener('mousemove', function () { g_leftArm = this.value; renderAllShapes(); });
+  document.getElementById('leftHand').addEventListener('mousemove', function () { g_leftHand = this.value; renderAllShapes(); });
+  document.getElementById('rightArm').addEventListener('mousemove', function () { g_rightArm = this.value; renderAllShapes(); });
+  document.getElementById('rightHand').addEventListener('mousemove', function () { g_rightHand = this.value; renderAllShapes(); });
+
 
 }
 
@@ -232,23 +247,14 @@ function updateAnimationAngles() {
 function renderAllShapes() {
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  gl.clear(gl.COLOR_BUFFER_BIT);
 
   // Check the time at the start of this function
   var startTime = performance.now();
-
-  var scale = 0.35; // To simulate camera moving away
+  var scale = 0.35;
 
   // Pass the matrix to u_ModelMatrix attribute
   var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).rotate(g_upAndDown, 1, 0, 0).scale(scale, scale, scale).rotate(-x_rot, 0, 1, 0).rotate(y_rot, 1, 0, 0);
-
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
-
-  // Clear <canvas>
-
-
-
-
 
   // Main body
   var bmo1 = new Cube();
@@ -632,13 +638,15 @@ function renderAllShapes() {
   var bmo54 = new Cube();
   bmo54.matrix = new Matrix4(bmo1.matrix);
   bmo54.color = [84 / 255, 120 / 255, 123 / 255, 1];
+  bmo54.matrix.rotate(g_rightArm, 0, 0, 1);
   bmo54.matrix.scale(.3, .08, .1)
   bmo54.matrix.translate(-1, 1, 4.75);
-  bmo54.matrix.translate(0, g_yellowAngle/200, 0);
+  bmo54.matrix.translate(0, g_yellowAngle / 200, 0);
   bmo54.render();
   var bmo55 = new Cube();
   bmo55.matrix = new Matrix4(bmo54.matrix);
   bmo55.color = [84 / 255, 120 / 255, 123 / 255, 1];
+  bmo55.matrix.rotate(g_rightHand, 0, 0, 1);
   bmo55.matrix.translate(0, 0, 0);
   bmo55.matrix.rotate(30, 1, 0, 0);
   bmo55.matrix.scale(.4, 4, 1)
@@ -649,18 +657,92 @@ function renderAllShapes() {
   var bmo55 = new Cube();
   bmo55.matrix = new Matrix4(bmo1.matrix);
   bmo55.color = [84 / 255, 120 / 255, 123 / 255, 1];
+  bmo55.matrix.rotate(g_leftArm, 0, 0, 1);
   bmo55.matrix.scale(.3, .08, .1)
   bmo55.matrix.translate(3.4, 1, 4.75);
-  bmo55.matrix.translate(0, g_yellowAngle/200, 0);
+  bmo55.matrix.translate(0, g_yellowAngle / 200, 0);
   bmo55.render();
   var bmo56 = new Cube();
   bmo56.matrix = new Matrix4(bmo55.matrix);
   bmo56.color = [84 / 255, 120 / 255, 123 / 255, 1];
+  bmo56.matrix.rotate(g_leftHand, 0, 0, 1);
   bmo56.matrix.translate(0, 0, 0);
   bmo56.matrix.rotate(30, 1, 0, 0);
   bmo56.matrix.scale(.4, 4, 1)
   bmo56.matrix.translate(1.5, -0.8, -.2);
   bmo56.render();
+
+  // Face
+
+  // Left Eye
+  var bmo57 = new Cube();
+  bmo57.matrix = new Matrix4(bmo1.matrix);
+  bmo57.color = [21 / 255, 46 / 255, 38 / 255, 1];
+  bmo57.matrix.scale(.05, .1, .1);
+  bmo57.matrix.translate(4, 7, -0.05);
+  bmo57.render();
+  var bmo58 = new Cube();
+  bmo58.matrix = new Matrix4(bmo1.matrix);
+  bmo58.color = [21 / 255, 46 / 255, 38 / 255, 1];
+  bmo58.matrix.scale(.05, .1, .1);
+  bmo58.matrix.translate(5, 7.5, -0.05);
+  bmo58.render();
+  var bmo59 = new Cube();
+  bmo59.matrix = new Matrix4(bmo1.matrix);
+  bmo59.color = [21 / 255, 46 / 255, 38 / 255, 1];
+  bmo59.matrix.scale(.05, .1, .1);
+  bmo59.matrix.translate(6, 7, -0.05);
+  bmo59.render();
+
+  // Right Eye
+  var bmo60 = new Cube();
+  bmo60.matrix = new Matrix4(bmo1.matrix);
+  bmo60.color = [21 / 255, 46 / 255, 38 / 255, 1];
+  bmo60.matrix.scale(.05, .1, .1);
+  bmo60.matrix.translate(12, 7, -0.05);
+  bmo60.render();
+  var bmo61 = new Cube();
+  bmo61.matrix = new Matrix4(bmo1.matrix);
+  bmo61.color = [21 / 255, 46 / 255, 38 / 255, 1];
+  bmo61.matrix.scale(.05, .1, .1);
+  bmo61.matrix.translate(13, 7.5, -0.05);
+  bmo61.render();
+  var bmo62 = new Cube();
+  bmo62.matrix = new Matrix4(bmo1.matrix);
+  bmo62.color = [21 / 255, 46 / 255, 38 / 255, 1];
+  bmo62.matrix.scale(.05, .1, .1);
+  bmo62.matrix.translate(14, 7, -0.05);
+  bmo62.render();
+
+  // Mouth
+  var bmo63 = new Cube();
+  bmo63.matrix = new Matrix4(bmo1.matrix);
+  bmo63.color = [71 / 255, 135 / 255, 67 / 255, 1];
+  bmo63.matrix.scale(.2, .08, .1);
+  bmo63.matrix.translate(1.9, 6.5, -0.05);
+  bmo63.render();
+  var bmo64 = new Cube();
+  bmo64.matrix = new Matrix4(bmo1.matrix);
+  bmo64.color = [71 / 255, 135 / 255, 67 / 255, 1];
+  bmo64.matrix.scale(.06, .08, .1);
+  bmo64.matrix.translate(5.5, 7, -0.05);
+  bmo64.render();
+  var bmo65 = new Cube();
+  bmo65.matrix = new Matrix4(bmo1.matrix);
+  bmo65.color = [71 / 255, 135 / 255, 67 / 255, 1];
+  bmo65.matrix.scale(.06, .08, .1);
+  bmo65.matrix.translate(9.5, 7, -0.05);
+  bmo65.render();
+  var bmo66 = new Cube();
+  bmo66.matrix = new Matrix4(bmo1.matrix);
+  bmo66.color = [119 / 255, 193 / 255, 125 / 255, 1];
+  bmo66.matrix.scale(.12, .04, .1);
+  bmo66.matrix.translate(3.5, 13, -0.06);
+  bmo66.render();
+
+
+
+
 
   // Left Arm
   // var bmo56 = new Cube();
