@@ -163,12 +163,14 @@ function click(ev) {
 
   // Extract the event click and return it in WebGL coordinates
 
+  // Save current state
   let x2 = x;
   let y2 = y;
 
 
   let = [x, y] = convertCoordinatesEventToGL(ev);
 
+  // Find
   x_rot = x_rot + ((x - x2) * 100)
   y_rot = y_rot + ((y - y2) * 100)
 
@@ -222,7 +224,7 @@ function renderAllShapes() {
   var scale = 0.35; // To simulate camera moving away
 
   // Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).scale(scale, scale, scale).rotate(x_rot, 0, 0, 1).rotate(y_rot, 0,1,0);
+  var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).scale(scale, scale, scale).rotate(-x_rot, 0, 1, 0).rotate(y_rot, 1, 0, 0);
 
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
