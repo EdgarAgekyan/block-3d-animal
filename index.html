@@ -6,40 +6,48 @@
     <title>Change a point color</title>
 </head>
 
-<body onload="main()">
-    <canvas id="webgl" width="400" height="400">
-        Please use a browser that supports "canvas"
-    </canvas>
+<body onload="main()" style = "background-image: url('./adventure_time.jpeg'); background-size: cover;">
+    <div style="text-align: center;">
 
-    <p id="numdot"> Performance </p>
+        <p> _______________________________ </p>
 
-    <button type="button" id="clear">RESET</button>
-    <p>
-        Animation:
-        <button type="button" id="animationYellowOnButton">ON</button>
-        <button type="button" id="animationYellowOffButton">OFF</button>
-    <p>
-    <p>
-        Camera Angle 1: <input type="range" min="0" max="360" value="0" class="slider" id="angleSlide1">
-    <p>
-        Camera Angle 2: <input type="range" min="0" max="360" value="0" class="slider" id="angleSlide2">
-    <p>
-        Left Arm <input type="range" min="-3" max="3" value="0" class="slider" id="leftArm">
-    <p>
-        Left Hand <input type="range" min="-5" max="5" value="0" class="slider" id="leftHand">
-    <p>
-        Right Arm <input type="range" min="-20" max="10" value="0" class="slider" id="rightArm">
-    <p>
-        Right Hand <input type="range" min="-5" max="5" value="0" class="slider" id="rightHand">
-    <p>
-        Left Leg <input type="range" min="-20" max="0" value="0" class="slider" id="leftLeg">
-    <p>
-        Left Foot <input type="range" min="-20" max="0" value="0" class="slider" id="leftFoot">
-    <p>
-        Right Leg <input type="range" min="-20" max="0" value="0" class="slider" id="rightLeg">
-    <p>
-        Right Foot <input type="range" min="-20" max="0" value="0" class="slider" id="rightFoot">
-    <p>
+        <h1 font-size: 30px style="text-align: center; color: black; font-family: 'Bangers';">BMO: Be MOre</h1>
+
+        <canvas id="webgl" width="400" height="400">
+            Please use a browser that supports "canvas"
+        </canvas>
+
+        <p id="numdot"> Performance </p>
+
+        <button type="button" id="clear">RESET</button>
+        <p>
+            BMO Idle Animation:
+            <button type="button" id="animationYellowOnButton">ON</button>
+            <button type="button" id="animationYellowOffButton">OFF</button>
+        <p>
+        <p style="font-weight: bold;">
+            Camera Angle 1: <input type="range" min="0" max="360" value="0" class="slider" id="angleSlide1">
+        <p style="font-weight: bold;">
+            Camera Angle 2: <input type="range" min="0" max="360" value="0" class="slider" id="angleSlide2">
+        <p style="font-weight: bold;">
+            Left Arm <input type="range" min="-3" max="3" value="0" class="slider" id="leftArm">
+        <p style="font-weight: bold;">
+            Left Hand <input type="range" min="-5" max="5" value="0" class="slider" id="leftHand">
+        <p style="font-weight: bold;">
+            Right Arm <input type="range" min="-20" max="10" value="0" class="slider" id="rightArm">
+        <p style="font-weight: bold;">
+            Right Hand <input type="range" min="-5" max="5" value="0" class="slider" id="rightHand">
+        <p style="font-weight: bold;">
+            Left Leg <input type="range" min="-20" max="0" value="0" class="slider" id="leftLeg">
+        <p style="font-weight: bold;">
+            Left Foot <input type="range" min="-20" max="0" value="0" class="slider" id="leftFoot">
+        <p style="font-weight: bold;">
+            Right Leg <input type="range" min="-20" max="0" value="0" class="slider" id="rightLeg">
+        <p style="font-weight: bold;">
+            Right Foot <input type="range" min="-20" max="0" value="0" class="slider" id="rightFoot">
+        <p style="font-weight: bold;">
+
+        </div>
 
 
 

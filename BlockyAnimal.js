@@ -109,6 +109,9 @@ let g_leftFoot = 0;
 let g_rightLeg = 0;
 let g_rightFoot = 0;
 
+let g_shiftClick = 0;
+let g_shiftAnimation = 0;
+
 // Set up actions for the HTML UI elements
 function addActionsForHtmlUI() {
 
@@ -134,6 +137,8 @@ function addActionsForHtmlUI() {
     g_leftFoot = 0,
     g_rightLeg = 0,
     g_rightFoot = 0;
+    g_shiftClick = 0;
+    g_shiftAnimation = 0;
   }
 
   document.getElementById('angleSlide1').addEventListener('mousemove', function () { g_globalAngle = this.value; renderAllShapes(); });
@@ -148,6 +153,15 @@ function addActionsForHtmlUI() {
   document.getElementById('leftFoot').addEventListener('mousemove', function () { g_leftFoot = this.value; renderAllShapes(); });
   document.getElementById('rightLeg').addEventListener('mousemove', function () { g_rightLeg = this.value; renderAllShapes(); });
   document.getElementById('rightFoot').addEventListener('mousemove', function () { g_rightFoot = this.value; renderAllShapes(); });
+
+  // For shift clicking:
+  document.addEventListener("click", logKey);
+
+  function logKey(e) {
+    if (e.shiftKey) {
+      g_shiftClick = 1;
+    }
+  }
 
 }
 
@@ -256,6 +270,9 @@ function updateAnimationAngles() {
   if (g_yellowAnimation) {
     g_yellowAngle = (45 * Math.sin(g_seconds));
     g_redAngle = (45 * Math.cos(g_seconds));
+  }
+  if (g_shiftClick == 1) {
+    g_shiftAnimation = (45 * Math.sin(g_seconds));
   }
 }
 
@@ -395,12 +412,14 @@ function renderAllShapes() {
   bmo18.color = [247 / 255, 218 / 255, 80 / 255, 1];
   bmo18.matrix.scale(.06, .15, .1);
   bmo18.matrix.translate(3, 1, -.4);
+  bmo18.matrix.translate(0, 0, g_shiftAnimation/200);
   bmo18.render();
   var bmo19 = new Cube();
   bmo19.matrix = new Matrix4(bmo1.matrix);
   bmo19.color = [247 / 255, 218 / 255, 80 / 255, 1];
   bmo19.matrix.scale(.2, .06, .1);
   bmo19.matrix.translate(0.555, 3.3, -.4);
+  bmo19.matrix.translate(0, 0, g_shiftAnimation/200);
   bmo19.render();
 
 
@@ -410,12 +429,14 @@ function renderAllShapes() {
   bmo20.color = [5 / 255, 14 / 255, 113 / 255, 1];
   bmo20.matrix.scale(.15, .03, .1);
   bmo20.matrix.translate(0.3, 2, -0.15);
+  bmo20.matrix.translate(0, 0, g_shiftAnimation/350);
   bmo20.render();
   var bmo21 = new Cube();
   bmo21.matrix = new Matrix4(bmo1.matrix);
   bmo21.color = [5 / 255, 14 / 255, 113 / 255, 1];
   bmo21.matrix.scale(.15, .03, .1);
   bmo21.matrix.translate(1.6, 2, -0.15);
+  bmo21.matrix.translate(0, 0, g_shiftAnimation/350);
   bmo21.render();
 
 
@@ -427,6 +448,7 @@ function renderAllShapes() {
   bmo22.matrix.scale(.5, .5, 0.5);
   bmo22.matrix.translate(1.1, 0.9, -.2);
   bmo22.matrix.rotate(90, 1, 0, 0);
+  bmo22.matrix.translate(0, g_shiftAnimation/350, 0);
   bmo22.render();
 
 
@@ -437,6 +459,7 @@ function renderAllShapes() {
   bmo23.matrix.scale(.2, .18, .4);
   bmo23.matrix.scale(.5, .5, .2);
   bmo23.matrix.translate(4.5, 2.5, -.5);
+  bmo23.matrix.translate(0, 0, g_shiftAnimation/200);
   bmo23.render();
 
   // Green Circle Button
@@ -447,6 +470,7 @@ function renderAllShapes() {
   bmo24.matrix.scale(.3, .3, 0.5);
   bmo24.matrix.translate(2.9, 1.6, -.2);
   bmo24.matrix.rotate(90, 1, 0, 0);
+  bmo24.matrix.translate(0, g_shiftAnimation/350, 0);
   bmo24.render();
 
   // Blue Circle Button
@@ -457,6 +481,7 @@ function renderAllShapes() {
   bmo25.matrix.scale(.15, .15, 0.5);
   bmo25.matrix.translate(6.5, 4.2, -.2);
   bmo25.matrix.rotate(90, 1, 0, 0);
+  bmo25.matrix.translate(0, g_shiftAnimation/350, 0);
   bmo25.render();
 
   // Right leg
@@ -706,7 +731,8 @@ function renderAllShapes() {
   bmo58.matrix = new Matrix4(bmo1.matrix);
   bmo58.color = [21 / 255, 46 / 255, 38 / 255, 1];
   bmo58.matrix.scale(.05, .1, .1);
-  bmo58.matrix.translate(5, 7.5, -0.05);
+  bmo58.matrix.translate(5, 7.3, -0.05);
+  bmo58.matrix.translate(0, g_shiftAnimation/200, 0);
   bmo58.render();
   var bmo59 = new Cube();
   bmo59.matrix = new Matrix4(bmo1.matrix);
@@ -726,7 +752,8 @@ function renderAllShapes() {
   bmo61.matrix = new Matrix4(bmo1.matrix);
   bmo61.color = [21 / 255, 46 / 255, 38 / 255, 1];
   bmo61.matrix.scale(.05, .1, .1);
-  bmo61.matrix.translate(13, 7.5, -0.05);
+  bmo61.matrix.translate(13, 7.3, -0.05);
+  bmo61.matrix.translate(0, g_shiftAnimation/200, 0);
   bmo61.render();
   var bmo62 = new Cube();
   bmo62.matrix = new Matrix4(bmo1.matrix);
