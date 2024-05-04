@@ -24,3 +24,9 @@
 <br> I also have a slider that move's BMO's left arm, left hand, right arm, right hand, left leg, left foot, right leg, and right foot.
 <br> I should mention that the feet are also the third joint. The entire leg is basically consisted of 3 parts. 2 main leg parts and the foot at the bottom.
 <br> I know my animations/joint movements are nothing crazy but I am happy with what I was able to accomplish and learn from this!
+
+<br> Some sources:
+<br> https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey
+<br> https://stackoverflow.com/questions/10001283/html5-canvas-how-to-handle-mousedown-mouseup-mouseclick
+<br> https://stackoverflow.com/questions/723290/in-an-onclick-handler-how-can-i-detect-whether-shift-was-pressed
+<br> https://www.w3schools.com/jsref/event_onmousedown.asp
